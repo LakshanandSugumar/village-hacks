@@ -191,9 +191,9 @@ const FALLBACK_ROI_COPY = {
     'We’ll review the renewal math, coverage gaps, and put proactive automations around every life event that hits.',
 };
 
-const buildFallbackSms = (lead: LeadProfile, roiCopy: { sms: string }) => {
+const buildFallbackSms = (lead: LeadProfile, roiCopyOverride?: { sms: string }) => {
   const firstName = lead.name.split(' ')[0] || lead.name;
-  const roiCopy = ROI_BY_PAIN_POINT[lead.painPoint] ?? FALLBACK_ROI_COPY;
+  const roiCopy = roiCopyOverride ?? ROI_BY_PAIN_POINT[lead.painPoint] ?? FALLBACK_ROI_COPY;
   const renewalLabel = formatRenewal(lead.renewalMonth);
   const renewalText = renewalLabel === 'their next renewal window' ? 'coming up soon' : `in ${renewalLabel}`;
   const calendar = {
